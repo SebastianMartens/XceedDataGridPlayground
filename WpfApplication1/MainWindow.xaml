@@ -14,8 +14,8 @@
         
         
         <xcdg:DataGridControl.Columns>
-                <xcdg:Column FieldName="Name" Title="Name"/>
-                <xcdg:Column FieldName="Amount" Title="Amount" >
+            <xcdg:Column FieldName="Name" Title="Name"/>
+            <xcdg:Column FieldName="Amount" Title="Amount" >
 
                 <xcdg:Column.CellValidationRules>
                     <wpfApplication1:TestDataAmountColumnMaxValueValidationRule/>
@@ -25,8 +25,6 @@
             <xcdg:Column FieldName="Category" Title="Category"/>
         </xcdg:DataGridControl.Columns>            
 
-        </xcdg:DataGridControl>
-
-    
+        </xcdg:DataGridControl>   
 
 </Window>
