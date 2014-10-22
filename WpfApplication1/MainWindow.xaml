@@ -31,7 +31,7 @@
         </i:Interaction.Triggers>
         
         <xcdg:DataGridControl.View>
-            <xcdg:TableView ColumnStretchMode="All"/>            
+            <xcdg:TableView ColumnStretchMode="Last"/>            
         </xcdg:DataGridControl.View>
             
         <xcdg:DataGridControl.Columns>
