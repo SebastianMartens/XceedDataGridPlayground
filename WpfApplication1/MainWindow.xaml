@@ -1,0 +1,32 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:wpfApplication1="clr-namespace:WpfApplication1"
+        xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid" xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock" x:Class="WpfApplication1.MainWindow"
+        Title="MainWindow" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+    <Window.DataContext>
+        <wpfApplication1:MainWindowViewModel />
+    </Window.DataContext>
+
+    
+
+        <xcdg:DataGridControl ItemsSource="{Binding TestData}" AlternationCount="1">
+        
+        
+        <xcdg:DataGridControl.Columns>
+                <xcdg:Column FieldName="Name" Title="Name"/>
+                <xcdg:Column FieldName="Amount" Title="Amount" >
+
+                <xcdg:Column.CellValidationRules>
+                    <wpfApplication1:TestDataAmountColumnMaxValueValidationRule/>
+                </xcdg:Column.CellValidationRules>
+                                    
+            </xcdg:Column>
+            <xcdg:Column FieldName="Category" Title="Category"/>
+        </xcdg:DataGridControl.Columns>            
+
+        </xcdg:DataGridControl>
+
+    
+
+</Window>
