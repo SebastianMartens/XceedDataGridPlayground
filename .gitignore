@@ -32,4 +32,4 @@ _ReSharper*/
 App_Data*/
 *.xap
 Generated_Code*/
-
+packages/
