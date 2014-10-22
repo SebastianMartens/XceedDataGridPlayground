@@ -1,21 +1,42 @@
 ﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:wpfApplication1="clr-namespace:WpfApplication1"
-        xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid" xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock" x:Class="WpfApplication1.MainWindow"
+        xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid" xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+        x:Class="WpfApplication1.MainWindow"
         Title="MainWindow" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
+    <!-- ramp up view model -->
     <Window.DataContext>
         <wpfApplication1:MainWindowViewModel />
     </Window.DataContext>
 
+
+<StackPanel Orientation="Vertical">
     
 
-        <xcdg:DataGridControl ItemsSource="{Binding TestData}" AlternationCount="1">
+    <xcdg:DataGridControl ItemsSource="{Binding TestData}" 
+                          AlternationCount="1" 
+                          PreviewKeyDown="myGrid_PreviewKeyDown"
+                          x:Name="MyGrid" Height="421">
+
+        <i:Interaction.Triggers>
+            <i:EventTrigger EventName="SelectionChanged">
+                <cmd:EventToCommand
+                Command="{Binding SelectionChangedCommand}"
+                CommandParameter="{Binding SelectedItems,
+                    ElementName=MyGrid}" />
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
         
-        
+        <xcdg:DataGridControl.View>
+            <xcdg:TableView ColumnStretchMode="All"/>            
+        </xcdg:DataGridControl.View>
+            
         <xcdg:DataGridControl.Columns>
-            <xcdg:Column FieldName="Name" Title="Name"/>
-            <xcdg:Column FieldName="Amount" Title="Amount" >
+            <xcdg:Column FieldName="Name" Title="Name" MinWidth="200"/>
+            <xcdg:Column FieldName="Amount" Title="Amount" MinWidth="40">
 
                 <xcdg:Column.CellValidationRules>
                     <wpfApplication1:TestDataAmountColumnMaxValueValidationRule/>
@@ -25,6 +46,12 @@
             <xcdg:Column FieldName="Category" Title="Category"/>
         </xcdg:DataGridControl.Columns>            
 
-        </xcdg:DataGridControl>   
+        </xcdg:DataGridControl>
 
+    <StackPanel Orientation="Horizontal">
+            <Label># Selectierte Rows:</Label>
+            <Label Content="{Binding NumberOfItemsSelected}"></Label>
+        </StackPanel>
+</StackPanel>
+    
 </Window>

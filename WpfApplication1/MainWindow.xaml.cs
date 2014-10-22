@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 
 namespace WpfApplication1
 {
@@ -11,6 +12,17 @@ namespace WpfApplication1
         {
             InitializeComponent();
         }
-       
+
+        void myGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            // Example of how to change behaviour "onEnter" to move to the next row:
+            if (e.Key == Key.Return)
+            {
+                MyGrid.Items.MoveCurrentToNext();
+                MyGrid.BringItemIntoView(MyGrid.CurrentItem);                
+                e.Handled = true;
+            }                        
+        }
+ 
     }
 }
