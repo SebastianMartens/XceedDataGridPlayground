@@ -59,6 +59,17 @@ namespace WpfApplication1
         }
 
         #endregion
+
+        #region handling insertions
+
+        // see also: http://doc.xceedsoft.com/products/xceedwpfdatagrid/Inserting_Data.html
+        // or: http://doc.xceedsoft.com/products/XceedWpfToolkit/#Inserting_Data.html
+
+        
+        // InsertionRow is a premium feature!!
+        //http://doc.xceedsoft.com/products/XceedWpfToolkit/#Xceed.Wpf.DataGrid.html
+
+        #endregion
     }
 
     public class TestDataRowDto
