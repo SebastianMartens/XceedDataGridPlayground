@@ -15,20 +15,18 @@
     
     <StackPanel Orientation="Vertical">
 
-            <StackPanel.Resources>
-            <xcdg:DataGridCollectionViewSource x:Key="MainWindowDataViewSource"
-                                       Source="{Binding TestData}" />
+            <StackPanel.Resources>            
             <!--CreatingNewItem="CollectionView_CreatingNewItem"
                                        CommittingNewItem="CollectionView_CommittingNewItem"
                                        CancelingNewItem="CollectionView_CancelingNewItem"/>-->
         </StackPanel.Resources>
 
         <xcdg:DataGridControl 
-                              ItemsSource="{Binding Source={StaticResource MainWindowDataViewSource}}"
+                                ItemsSource="{Binding TestData}"                  
                               AlternationCount="1"
                               PreviewKeyDown="myGrid_PreviewKeyDown"
-                              x:Name="MyGrid" Height="421">
-
+                              x:Name="MyGrid" Height="421">            
+            
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <cmd:EventToCommand
@@ -38,7 +36,7 @@
             </i:Interaction.Triggers>
 
             <xcdg:DataGridControl.View>
-                <xcdg:TableView ColumnStretchMode="Last" />
+                <xcdg:TableView ColumnStretchMode="Last"/>
             <!--        <xcdg:TableView.FixedHeaders>
                         <DataTemplate>
                             <xcdg:InsertionRow />
@@ -48,7 +46,7 @@
             </xcdg:DataGridControl.View>
 
             <xcdg:DataGridControl.Columns>
-                <xcdg:Column FieldName="Name" Title="Name" MinWidth="200" />
+                <xcdg:Column FieldName="Name" Title="Name" MinWidth="200"/>
                 <xcdg:Column FieldName="Amount" Title="Amount" MinWidth="40">
 
                     <xcdg:Column.CellValidationRules>
@@ -64,6 +62,9 @@
         <StackPanel Orientation="Horizontal">
             <Label># Selectierte Rows:</Label>
             <Label Content="{Binding NumberOfItemsSelected}"></Label>
+            
+            <Button Content="Cancel Edit!" Command="{Binding CancelEditCommand}"></Button>
+            <Button Content="Group By Category!" Command="{Binding GroupByCategoryCommand}"></Button>
         </StackPanel>
     </StackPanel>
 
