@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Data;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using Xceed.Wpf.DataGrid;
@@ -17,7 +18,7 @@ namespace WpfApplication1
             
             SelectionChangedCommand = new RelayCommand<IList>(OnSelectionChangedCommandExecuted);
             CancelEditCommand = new RelayCommand(OnCancelEditExecuted);
-            GroupByCategoryCommand = new RelayCommand(OnGroupByCategoryCommandExecuted);
+            GroupByCategoryCommand = new RelayCommand(OnGroupByCategoryCommandExecuted);            
         }
 
         #region provide test data
@@ -73,8 +74,7 @@ namespace WpfApplication1
 
         // see also: http://doc.xceedsoft.com/products/xceedwpfdatagrid/Inserting_Data.html
         // or: http://doc.xceedsoft.com/products/XceedWpfToolkit/#Inserting_Data.html
-
-
+        
         // InsertionRow is a premium feature!!
         //http://doc.xceedsoft.com/products/XceedWpfToolkit/#Xceed.Wpf.DataGrid.html
 
@@ -92,10 +92,10 @@ namespace WpfApplication1
             // - Das Editieren per Code abbrechen ist möglich durch das Aufrufen der CancelEdit Methode der Row (code behind).
             //   Doc: http://doc.xceedsoft.com/products/xceedwpfdatagrid/Editing_Data.html
                        
-            // Wenn das Beenden des Editierens vom ViewModel ausgehen soll (Vermeidung von code behind) kann eine DataGridCollectionView verwendet werden:
+            // Wenn das Beenden des Editierens vom ViewModel ausgehen soll (Vermeidung von code behind) kann eine DataGridCollectionView verwendet werden:            
             TestData.CancelEdit();
-            TestData.MoveCurrentToNext(); // Hack for reset the selection :-(            
-
+            TestData.MoveCurrentToNext(); // Hack for reset the selection :-(                        
+           
             // - Ebenso kann durch das Abfangen des Events dataGrid.EditBeginning verhindert werden, dass der Edit-Modus überhaupt aktiv wird.
             //   Hierbei kann man natürlich auch Eigenschaften des ViewModels (".DataContext") wie ein Binding hinzuziehen.
             //   Bsp.: http://xceed.com/CS/forums/thread/27955.aspx
@@ -106,10 +106,9 @@ namespace WpfApplication1
         #region test grouping by ViewModel
 
         public RelayCommand GroupByCategoryCommand { get; set; }
-
         private void OnGroupByCategoryCommandExecuted()
         {
-           TestData.GroupDescriptions.Add(new DataGridGroupDescription("Category"));            
+           TestData.GroupDescriptions.Add(new DataGridGroupDescription("Category"));           
         }
 
         #endregion
